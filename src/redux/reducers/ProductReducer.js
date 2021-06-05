@@ -3,6 +3,7 @@ const initialState = {
   products: [],
   product: {},
   random_product: {},
+  category_products: [],
 };
 
 const ProductReducer = (state = initialState, { type, payload }) => {
@@ -17,4 +18,13 @@ const ProductReducer = (state = initialState, { type, payload }) => {
       return state;
   }
 };
-export { ProductReducer };
+
+const CategoryReducer = (state = initialState, { type, payload }) => {
+  switch (type) {
+    case action_type.CATEGORY_PRODUCTS:
+      return { ...state, category_products: payload };
+    default:
+      return state;
+  }
+};
+export { ProductReducer, CategoryReducer };

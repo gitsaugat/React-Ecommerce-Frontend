@@ -20,4 +20,11 @@ const randomProduct = (product) => {
   };
 };
 
-export { setProducts, selectedProduct, randomProduct };
+const categoryProducts = (products) => {
+  return {
+    type: action_type.CATEGORY_PRODUCTS,
+    payload: products,
+  };
+};
+
+export { setProducts, selectedProduct, randomProduct, categoryProducts };
