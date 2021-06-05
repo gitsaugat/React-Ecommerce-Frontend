@@ -9,6 +9,7 @@ import { login } from "./redux/actions/AuthAction";
 import Profile from "./components/user/Profile";
 import { Logout } from "./components/auth/Logout";
 import Payment from "./components/user/Payment";
+import CategoryProducts from "./components/ecom/CategoryProducts";
 
 function App() {
   const state = useSelector((state) => state);
@@ -33,6 +34,21 @@ function App() {
         render={(props) => {
           if (isLoggedIn) {
             return <Products />;
+          } else {
+            return (
+              <Redirect
+                to={{ pathname: "/login", state: { from: props.location } }}
+              />
+            );
+          }
+        }}
+      />
+      <Route
+        exact
+        path="/products"
+        render={(props) => {
+          if (isLoggedIn) {
+            return <CategoryProducts />;
           } else {
             return (
               <Redirect
