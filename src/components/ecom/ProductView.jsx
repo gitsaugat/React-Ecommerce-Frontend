@@ -3,7 +3,6 @@ import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { selectedProduct } from "../../redux/actions/ProductAction";
 import { BASE_URL } from "../../utils";
-import Products from "./Products";
 
 const ProductView = () => {
   const { id } = useParams();
@@ -23,7 +22,7 @@ const ProductView = () => {
 
   return (
     <div>
-      <div class="container" style={{ margin: "auto" }}>
+      <div className="container" style={{ margin: "auto" }}>
         <br />
         <div className="d-flex justify-content-between align-items-center">
           <div className="m-3">
@@ -34,7 +33,7 @@ const ProductView = () => {
               {name} - ${price}
             </div>
             <h1 className="heading">{name}</h1>
-            <p class="text-muted">
+            <p className="text-muted">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
               pariatur vel et earum quibusdam facere rerum, fugiat illo ad
               consectetur ut, dolore eveniet id enim amet iste tempora repellat
@@ -53,7 +52,6 @@ const ProductView = () => {
           </div>
         </div>
       </div>
-      <Products />
     </div>
   );
 };

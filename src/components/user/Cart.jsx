@@ -31,7 +31,7 @@ const Cart = () => {
       <br />
       <br />
       <table className="table">
-        <thead>
+        <thead className="thead-dark">
           <tr>
             <th scope="col">Name</th>
             <th scope="col">image</th>

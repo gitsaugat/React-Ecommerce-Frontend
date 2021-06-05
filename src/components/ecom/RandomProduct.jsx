@@ -23,17 +23,17 @@ const RandomProduct = () => {
     state.all_products.random_product;
   return (
     <div>
-      <div class="container" style={{ margin: "auto" }}>
+      <div className="container" style={{ margin: "auto" }}>
         <div className="d-flex justify-content-between align-items-center">
           <div className="m-3">
             <img src={BASE_URL + get_image_url} height="500px" />
           </div>
-          <div class="detail">
+          <div className="detail">
             <div className="text-muted">
               {name} - ${price}
             </div>
             <h1 className="heading">{name}</h1>
-            <p class="text-muted">
+            <p className="text-muted">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Error
               pariatur vel et earum quibusdam facere rerum, fugiat illo ad
               consectetur ut, dolore eveniet id enim amet iste tempora repellat

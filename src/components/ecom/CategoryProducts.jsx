@@ -6,6 +6,7 @@ import {
 } from "../../redux/actions/ProductAction";
 import { BASE_URL } from "../../utils";
 import Product from "./Product";
+
 const CategoryProducts = () => {
   const [defaultCategory, setDefaultCategory] = useState("all");
 
@@ -24,10 +25,8 @@ const CategoryProducts = () => {
       const newdata = category_data.filter(
         (data) => data.id == defaultCategory
       );
-      console.log(newdata);
       dispatch(categoryProducts(newdata));
     } else {
-      console.log("all");
       dispatch(categoryProducts(state.all_products.products));
     }
   };
@@ -54,7 +53,7 @@ const CategoryProducts = () => {
         </div>
         <br />
         <br />
-        <div class="d-flex justify-content-center">
+        <div className="d-flex justify-content-center">
           <select
             value={defaultCategory}
             onChange={category_change_handler}
@@ -75,6 +74,7 @@ const CategoryProducts = () => {
             prod.category_products !== undefined ? (
               prod.category_products.map((pro) => (
                 <Product
+                  key={Math.random() * 100}
                   imageUrl={pro.get_image_url}
                   title={pro.name}
                   price={pro.price}
@@ -84,6 +84,7 @@ const CategoryProducts = () => {
               ))
             ) : (
               <Product
+                key={Math.random() * 100}
                 imageUrl={prod.get_image_url}
                 title={prod.name}
                 price={prod.price}

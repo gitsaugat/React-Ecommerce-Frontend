@@ -6,7 +6,7 @@ const Nav = () => {
   const { x_f_token, isLoggedIn } = state;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
         Ecom
       </Link>
