@@ -62,7 +62,7 @@ function App() {
         exact
         path="/login"
         render={(props) => {
-          if (!isLoggedIn) {
+          if (!localStorage.getItem("logged_in")) {
             return <Login />;
           } else {
             return (
@@ -77,7 +77,7 @@ function App() {
         exact
         path="/profile"
         render={(props) => {
-          if (isLoggedIn) {
+          if (localStorage.getItem("logged_in")) {
             return <Profile />;
           } else {
             return (
