@@ -41,6 +41,7 @@ const Login = () => {
       }
     } catch {
       console.log("error");
+      setError("Opps ! something went wrong");
     }
   };
   return (

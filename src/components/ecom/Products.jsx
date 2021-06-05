@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { setProducts } from "../../redux/actions/ProductAction";
+import { randomProduct, setProducts } from "../../redux/actions/ProductAction";
 import { BASE_URL } from "../../utils";
 import Product from "./Product";
+import RandomProduct from "./RandomProduct";
 
 const Products = () => {
   const state = useSelector((state) => state.all_products.products);
@@ -18,6 +19,7 @@ const Products = () => {
   return (
     <div className="container">
       <br />
+      <RandomProduct />
       <div className="row">
         {state.map((prod) => (
           <Product
