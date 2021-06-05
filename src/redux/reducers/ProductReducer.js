@@ -7,6 +7,7 @@ const initialState = {
 
 const categoryState = {
   category_products: [],
+  categories: [],
 };
 
 const ProductReducer = (state = initialState, { type, payload }) => {
@@ -24,6 +25,8 @@ const ProductReducer = (state = initialState, { type, payload }) => {
 
 const CategoryReducer = (state = categoryState, { type, payload }) => {
   switch (type) {
+    case action_type.SET_CATEGORIES:
+      return { ...state, categories: payload };
     case action_type.CATEGORY_PRODUCTS:
       return { ...state, category_products: payload };
     default:

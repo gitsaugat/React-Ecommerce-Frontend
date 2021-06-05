@@ -32,7 +32,7 @@ function App() {
         exact
         path="/"
         render={(props) => {
-          if (isLoggedIn) {
+          if (localStorage.getItem("logged_in")) {
             return <Products />;
           } else {
             return (
@@ -47,7 +47,7 @@ function App() {
         exact
         path="/products"
         render={(props) => {
-          if (isLoggedIn) {
+          if (localStorage.getItem("logged_in")) {
             return <CategoryProducts />;
           } else {
             return (
@@ -62,7 +62,7 @@ function App() {
         exact
         path="/product/:id"
         render={(props) => {
-          if (isLoggedIn) {
+          if (localStorage.getItem("logged_in")) {
             return <ProductView />;
           } else {
             return (

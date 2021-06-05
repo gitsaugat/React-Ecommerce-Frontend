@@ -26,5 +26,17 @@ const categoryProducts = (products) => {
     payload: products,
   };
 };
+const setCategory = (categories) => {
+  return {
+    type: action_type.SET_CATEGORIES,
+    payload: categories,
+  };
+};
 
-export { setProducts, selectedProduct, randomProduct, categoryProducts };
+export {
+  setProducts,
+  selectedProduct,
+  randomProduct,
+  categoryProducts,
+  setCategory,
+};

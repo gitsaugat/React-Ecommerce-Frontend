@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { categoryProducts } from "../../redux/actions/ProductAction";
+import {
+  categoryProducts,
+  setCategory,
+} from "../../redux/actions/ProductAction";
 import { BASE_URL } from "../../utils";
 import Product from "./Product";
 const CategoryProducts = () => {
-  const [defaultCategory, setDefaultCategory] = useState(0);
+  const [defaultCategory, setDefaultCategory] = useState("all");
 
   const state = useSelector((state) => state);
   const dispatch = useDispatch();
@@ -13,16 +16,22 @@ const CategoryProducts = () => {
       method: "GET",
     });
     const json_data = await response.json();
-    if (defaultCategory === 0) {
+    dispatch(setCategory(json_data));
+    if (defaultCategory !== 0) {
+      const category_data = json_data;
+
+      const newdata = category_data.filter(
+        (data) => data.id == defaultCategory
+      );
+      console.log(newdata);
+      dispatch(categoryProducts(newdata));
+    } else {
       console.log("all");
       dispatch(categoryProducts(state.all_products.products));
-    } else {
-      const category_data = json_data;
-      const data = category_data.filter(
-        (new_data) => new_data.id === defaultCategory
-      );
-      dispatch(categoryProducts(data));
     }
+  };
+  const category_change_handler = (e) => {
+    setDefaultCategory(e.target.value);
   };
   useEffect(() => {
     fetchProducts(`${BASE_URL}/api/v1/products/categories/`);
@@ -45,22 +54,43 @@ const CategoryProducts = () => {
         <br />
         <br />
         <div class="d-flex justify-content-center">
-          <select className="form-control" style={{ width: "120px" }}>
-            <option value="cat1">category</option>
+          <select
+            value={defaultCategory}
+            onChange={category_change_handler}
+            className="form-control"
+            style={{ width: "120px" }}
+          >
+            <option value={"all"}>Select Category</option>
+
+            {state.categories.categories.map((category) => (
+              <option value={category.id}>{category.name}</option>
+            ))}
           </select>
         </div>
       </form>
       <div className="container">
         <div className="row">
-          {state.categories.category_products.map((prod) => (
-            <Product
-              imageUrl={prod.get_image_url}
-              title={prod.name}
-              price={prod.price}
-              product_id={prod.id}
-              desc={prod.description}
-            />
-          ))}
+          {state.categories.category_products.map((prod) =>
+            prod.category_products !== undefined ? (
+              prod.category_products.map((pro) => (
+                <Product
+                  imageUrl={pro.get_image_url}
+                  title={pro.name}
+                  price={pro.price}
+                  product_id={pro.id}
+                  desc={pro.description}
+                />
+              ))
+            ) : (
+              <Product
+                imageUrl={prod.get_image_url}
+                title={prod.name}
+                price={prod.price}
+                product_id={prod.id}
+                desc={prod.description}
+              />
+            )
+          )}
         </div>
       </div>
     </div>
