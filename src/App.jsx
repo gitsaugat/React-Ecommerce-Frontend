@@ -94,7 +94,7 @@ function App() {
         path="/logout"
         exact
         render={(props) => {
-          if (isLoggedIn) {
+          if (localStorage.getItem("logged_in")) {
             return <Logout />;
           } else {
             return (
