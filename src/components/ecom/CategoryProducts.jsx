@@ -17,7 +17,8 @@ const CategoryProducts = () => {
     });
     const json_data = await response.json();
     dispatch(setCategory(json_data));
-    if (defaultCategory !== 0) {
+    if (defaultCategory !== "all") {
+      console.log("triggred");
       const category_data = json_data;
 
       const newdata = category_data.filter(
@@ -60,7 +61,7 @@ const CategoryProducts = () => {
             className="form-control"
             style={{ width: "120px" }}
           >
-            <option value={"all"}>Select Category</option>
+            <option value={"all"}>all</option>
 
             {state.categories.categories.map((category) => (
               <option value={category.id}>{category.name}</option>
