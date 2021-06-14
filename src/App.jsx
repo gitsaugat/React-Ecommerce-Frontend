@@ -10,7 +10,7 @@ import Profile from "./components/user/Profile";
 import { Logout } from "./components/auth/Logout";
 import Payment from "./components/user/Payment";
 import CategoryProducts from "./components/ecom/CategoryProducts";
-
+import Register from "./components/auth/Register";
 function App() {
   const state = useSelector((state) => state);
   const { isLoggedIn } = state.login_reducer;
@@ -99,6 +99,21 @@ function App() {
             return (
               <Redirect
                 to={{ pathname: "/login", state: { from: props.location } }}
+              />
+            );
+          }
+        }}
+      />
+      <Route
+        exact
+        path="/register"
+        render={(props) => {
+          if (!localStorage.getItem("logged_in")) {
+            return <Register />;
+          } else {
+            return (
+              <Redirect
+                to={{ pathname: "/", state: { from: props.location } }}
               />
             );
           }
