@@ -17,14 +17,14 @@ const CategoryProducts = () => {
       method: "GET",
     });
     const json_data = await response.json();
+
     dispatch(setCategory(json_data));
     if (defaultCategory !== "all") {
-      console.log("triggred");
-      const category_data = json_data;
-
+      const category_data = state.categories.categories;
       const newdata = category_data.filter(
-        (data) => data.id === defaultCategory
+        (data) => data.id.toString() === defaultCategory
       );
+      console.log(newdata);
       dispatch(categoryProducts(newdata));
     } else {
       dispatch(categoryProducts(state.all_products.products));
