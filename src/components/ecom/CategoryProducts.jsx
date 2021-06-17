@@ -22,7 +22,7 @@ const CategoryProducts = () => {
     if (defaultCategory !== "all") {
       const category_data = state.categories.categories;
       const newdata = category_data.filter(
-        (data) => data.id == defaultCategory
+        (data) => data.id.toString() === defaultCategory
       );
       console.log(newdata);
       dispatch(categoryProducts(newdata));
