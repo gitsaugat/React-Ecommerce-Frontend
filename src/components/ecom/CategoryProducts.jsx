@@ -23,7 +23,7 @@ const CategoryProducts = () => {
       const category_data = json_data;
 
       const newdata = category_data.filter(
-        (data) => data.id == defaultCategory
+        (data) => data.id === defaultCategory
       );
       dispatch(categoryProducts(newdata));
     } else {

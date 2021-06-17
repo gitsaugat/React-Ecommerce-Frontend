@@ -4,7 +4,7 @@ import { Route, BrowserRouter, Redirect } from "react-router-dom";
 import Products from "./components/ecom/Products";
 import ProductView from "./components/ecom/ProductView";
 import Login from "./components/page/Login";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "./redux/actions/AuthAction";
 import Profile from "./components/user/Profile";
 import { Logout } from "./components/auth/Logout";
@@ -12,8 +12,6 @@ import Payment from "./components/user/Payment";
 import CategoryProducts from "./components/ecom/CategoryProducts";
 import Register from "./components/auth/Register";
 function App() {
-  const state = useSelector((state) => state);
-  const { isLoggedIn } = state.login_reducer;
   const dispatch = useDispatch();
 
   useEffect(() => {
