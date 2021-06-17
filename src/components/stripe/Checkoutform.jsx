@@ -42,7 +42,7 @@ const Checkoutform = (props) => {
         }),
       });
       const jsonResponse = await response.json();
-      if (jsonResponse.status === 200) {
+      if (response.status === 200) {
         history.push("/");
       }
     }
