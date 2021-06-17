@@ -1,2 +1,2 @@
-const BASE_URL = "http://127.0.0.1:9000";
+const BASE_URL = "https://powerful-cliffs-21405.herokuapp.com";
 export { BASE_URL };

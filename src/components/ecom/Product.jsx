@@ -21,8 +21,6 @@ const Product = ({ title, imageUrl, desc, price, product_id }) => {
         quantity: 1,
       }),
     });
-    const response = await request.json();
-    console.log(request.status);
   };
   return (
     <div className="col col-lg-4">
@@ -32,7 +30,7 @@ const Product = ({ title, imageUrl, desc, price, product_id }) => {
           className="card-img-top"
           src={new_image_url}
           height="300"
-          alt="Card image cap"
+          alt="Card  cap"
         />
         <div className="card-body">
           <h5 className="card-title">{title}</h5>

@@ -35,12 +35,12 @@ const Login = () => {
         setError(null);
         history.push("/");
       } else {
-        localStorage.setItem("x_token", "");
-        localStorage.setItem("logged_in", false);
+        localStorage.clear();
         setError("Opps ! wrong username or password");
       }
     } catch {
       console.log("error");
+      setError("Opps ! something went wrong");
     }
   };
   return (

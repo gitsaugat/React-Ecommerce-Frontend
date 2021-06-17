@@ -6,7 +6,7 @@ const Nav = () => {
   const { x_f_token, isLoggedIn } = state;
 
   return (
-    <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
+    <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <Link className="navbar-brand" to="/">
         Ecom
       </Link>
@@ -26,6 +26,11 @@ const Nav = () => {
         <ul className="navbar-nav mr-auto">
           <li className="nav-item active">
             <Link className="nav-link" to="/">
+              Home
+            </Link>
+          </li>
+          <li className="nav-item active">
+            <Link className="nav-link" to="/products">
               Products
             </Link>
           </li>

@@ -4,15 +4,14 @@ import { Route, BrowserRouter, Redirect } from "react-router-dom";
 import Products from "./components/ecom/Products";
 import ProductView from "./components/ecom/ProductView";
 import Login from "./components/page/Login";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { login } from "./redux/actions/AuthAction";
 import Profile from "./components/user/Profile";
 import { Logout } from "./components/auth/Logout";
 import Payment from "./components/user/Payment";
-
+import CategoryProducts from "./components/ecom/CategoryProducts";
+import Register from "./components/auth/Register";
 function App() {
-  const state = useSelector((state) => state);
-  const { isLoggedIn } = state.login_reducer;
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -31,8 +30,23 @@ function App() {
         exact
         path="/"
         render={(props) => {
-          if (isLoggedIn) {
+          if (localStorage.getItem("logged_in")) {
             return <Products />;
+          } else {
+            return (
+              <Redirect
+                to={{ pathname: "/login", state: { from: props.location } }}
+              />
+            );
+          }
+        }}
+      />
+      <Route
+        exact
+        path="/products"
+        render={(props) => {
+          if (localStorage.getItem("logged_in")) {
+            return <CategoryProducts />;
           } else {
             return (
               <Redirect
@@ -46,7 +60,7 @@ function App() {
         exact
         path="/product/:id"
         render={(props) => {
-          if (isLoggedIn) {
+          if (localStorage.getItem("logged_in")) {
             return <ProductView />;
           } else {
             return (
@@ -62,7 +76,7 @@ function App() {
         exact
         path="/login"
         render={(props) => {
-          if (!isLoggedIn) {
+          if (!localStorage.getItem("logged_in")) {
             return <Login />;
           } else {
             return (
@@ -77,12 +91,27 @@ function App() {
         exact
         path="/profile"
         render={(props) => {
-          if (isLoggedIn) {
+          if (localStorage.getItem("logged_in")) {
             return <Profile />;
           } else {
             return (
               <Redirect
                 to={{ pathname: "/login", state: { from: props.location } }}
+              />
+            );
+          }
+        }}
+      />
+      <Route
+        exact
+        path="/register"
+        render={(props) => {
+          if (!localStorage.getItem("logged_in")) {
+            return <Register />;
+          } else {
+            return (
+              <Redirect
+                to={{ pathname: "/", state: { from: props.location } }}
               />
             );
           }
@@ -94,7 +123,7 @@ function App() {
         path="/logout"
         exact
         render={(props) => {
-          if (isLoggedIn) {
+          if (localStorage.getItem("logged_in")) {
             return <Logout />;
           } else {
             return (

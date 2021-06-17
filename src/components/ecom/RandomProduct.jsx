@@ -1,34 +1,34 @@
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import { selectedProduct } from "../../redux/actions/ProductAction";
+import { randomProduct } from "../../redux/actions/ProductAction";
 import { BASE_URL } from "../../utils";
-
-const ProductView = () => {
-  const { id } = useParams();
-  const { name, description, get_image_url, price } = useSelector(
-    (state) => state.all_products.product
-  );
+const RandomProduct = () => {
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
-
-  const fetchProduct = async (url) => {
-    const response = await fetch(url);
+  const fetchRandomProduct = async (url) => {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Token ${localStorage.getItem("x_token")}`,
+      },
+    });
     const json_data = await response.json();
-    dispatch(selectedProduct(json_data));
+    dispatch(randomProduct(json_data));
   };
   useEffect(() => {
-    fetchProduct(`${BASE_URL}/api/v1/product/${id}`);
-  }, [id]);
-
+    const url = `${BASE_URL}/api/v1/random/product/`;
+    fetchRandomProduct(url);
+  }, []);
+  const { name, get_image_url, description, price } =
+    state.all_products.random_product;
   return (
     <div>
       <div className="container" style={{ margin: "auto" }}>
-        <br />
         <div className="d-flex justify-content-between align-items-center">
           <div className="m-3">
             <img src={BASE_URL + get_image_url} height="500px" />
           </div>
-          <div class="detail">
+          <div className="detail">
             <div className="text-muted">
               {name} - ${price}
             </div>
@@ -56,4 +56,4 @@ const ProductView = () => {
   );
 };
 
-export default ProductView;
+export default RandomProduct;

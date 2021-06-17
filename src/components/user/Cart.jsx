@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { BASE_URL } from "../../utils";
 import { get_cart_items } from "../../redux/actions/UserAction";
 import CartItems from "./CartItems";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const state = useSelector((state) => state);
@@ -31,7 +32,7 @@ const Cart = () => {
       <br />
       <br />
       <table className="table">
-        <thead>
+        <thead className="thead-dark">
           <tr>
             <th scope="col">Name</th>
             <th scope="col">image</th>
@@ -59,9 +60,16 @@ const Cart = () => {
       <br />
       <div className="d-flex justify-content-between">
         <div></div>
-        <h5 className="text-muted">
-          Cart Total - ${state.cart_items.cart_items.get_cart_total}
-        </h5>
+        <div>
+          <h5 className="text-muted">
+            Total - ${state.cart_items.cart_items.get_cart_total}
+          </h5>
+          {state.cart_items.cart_items.get_cart_total > 50 && (
+            <Link to="/payment/stripe" className="btn btn-outline-primary">
+              Checkout Now 💸
+            </Link>
+          )}
+        </div>
       </div>
     </div>
   );
